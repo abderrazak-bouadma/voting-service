@@ -1,5 +1,6 @@
 package com.louvrehotels.votingservice.controller;
 
+import com.louvrehotels.votingservice.repository.PetEnum;
 import com.louvrehotels.votingservice.service.VotingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -38,5 +39,11 @@ public class VotingController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(vote);
+    }
+
+    @GetMapping("/total/{pet}")
+    ResponseEntity<Long> findTotalVotesByPet(@PathVariable PetEnum pet) {
+        Long total = votingService.findVotesByPet(pet);
+        return ResponseEntity.ok(total);
     }
 }

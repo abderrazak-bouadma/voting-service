@@ -1,10 +1,9 @@
 package com.louvrehotels.votingservice.repository;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-/**
- * Created by Abderrazak BOUADMA
- * on 10/12/2018.
- */
-public interface VotingRepository extends CrudRepository<Vote, Long>{
+public interface VotingRepository extends CrudRepository<Vote, Long> {
+    @Query("SELECT count(v) from Vote v where v.pet = ?1")
+    Long countVotesByPet(PetEnum pet);
 }

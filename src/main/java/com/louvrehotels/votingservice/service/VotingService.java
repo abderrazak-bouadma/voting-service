@@ -3,6 +3,7 @@ package com.louvrehotels.votingservice.service;
 import com.louvrehotels.votingservice.controller.VoteCreateDto;
 import com.louvrehotels.votingservice.controller.VoteMapper;
 import com.louvrehotels.votingservice.controller.VoteReadDto;
+import com.louvrehotels.votingservice.repository.PetEnum;
 import com.louvrehotels.votingservice.repository.Vote;
 import com.louvrehotels.votingservice.repository.VotingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,9 @@ public class VotingService {
     public VoteReadDto findById(Long id) {
         Optional<Vote> result = votingRepository.findById(id);
         return voteMapper.toVoteReadDto(result.orElse(null));
+    }
+
+    public Long findVotesByPet(PetEnum pet) {
+        return votingRepository.countVotesByPet(pet);
     }
 }

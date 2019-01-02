@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS, RequestMethod.PUT})
 @RestController
 @RequestMapping("/votes")
 public class VotingController {
@@ -35,7 +36,7 @@ public class VotingController {
     @GetMapping("/{id}")
     ResponseEntity<VoteReadDto> findById(@PathVariable Long id) {
         VoteReadDto vote = votingService.findById(id);
-        if (vote==null) {
+        if (vote == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(vote);

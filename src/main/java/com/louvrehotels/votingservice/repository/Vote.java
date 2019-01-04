@@ -38,4 +38,12 @@ public class Vote {
     public void setPet(PetEnum pet) {
         this.pet = pet;
     }
+
+    @Override
+    public String toString() {
+        return "Vote{" +
+                "id=" + id +
+                ", pet=" + pet +
+                '}';
+    }
 }

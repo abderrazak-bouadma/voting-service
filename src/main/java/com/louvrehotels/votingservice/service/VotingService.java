@@ -6,6 +6,8 @@ import com.louvrehotels.votingservice.controller.VoteReadDto;
 import com.louvrehotels.votingservice.repository.PetEnum;
 import com.louvrehotels.votingservice.repository.Vote;
 import com.louvrehotels.votingservice.repository.VotingRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,7 @@ public class VotingService {
     @Autowired
     VoteMapper voteMapper;
 
+    public static final Logger logger = LoggerFactory.getLogger(VotingService.class);
 
     public List<VoteReadDto> getAllVotes() {
         List<VoteReadDto> result = new ArrayList<>();
@@ -35,6 +38,7 @@ public class VotingService {
         try {
             Vote vote = voteMapper.fromCreateDto(voteCreateDto);
             Vote saved = votingRepository.save(vote);
+            logger.info("voted {}", saved);
             return voteMapper.toVoteReadDto(saved);
         } catch (Exception e) {
             throw new ServiceException(e.getMessage());

@@ -8,3 +8,5 @@ FROM gcr.io/distroless/java
 COPY --from=builder /usr/src/app/target/voting-service-0.0.1-SNAPSHOT.jar /usr/app/app.jar
 WORKDIR /root/
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/usr/app/app.jar"]
+
+EXPOSE 8080

@@ -26,6 +26,7 @@ public class VotingController {
         return ResponseEntity.ok(allVotes);
     }
 
+    // hello there
     @PostMapping
     ResponseEntity<VoteReadDto> vote(@RequestBody VoteCreateDto voteCreateDto) {
         VoteReadDto v = votingService.vote(voteCreateDto);
